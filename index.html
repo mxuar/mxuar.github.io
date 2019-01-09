@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html>
+
 <head>
     <title>Min XU</title>
     <style>
@@ -7,150 +8,164 @@
             text-align: center;
             background-color: #f0e9d0;
         }
-
+        
         #cofee {
-          width: 50vw;
-          height: 50vw;
-          position: fixed;
-          left: 50%;
-          top: 50%;
-          -webkit-transform: translate(-50%, -50%);
-                  transform: translate(-50%, -50%);
+            width: 50vw;
+            height: 50vw;
+            position: fixed;
+            left: 50%;
+            top: 50%;
+            -webkit-transform: translate(-50%, -50%);
+            transform: translate(-50%, -50%);
         }
-
+        
         #cofee div {
-          position: relative;
+            position: relative;
         }
+        
         #cofee .plate {
-          border-radius: 50%;
-          box-shadow: 10px 5px 30px rgba(0, 0, 0, 0.333);
-          width: 100%;
-          height: 100%;
+            border-radius: 50%;
+            box-shadow: 10px 5px 30px rgba(0, 0, 0, 0.333);
+            width: 100%;
+            height: 100%;
         }
+        
         #cofee .plate div {
-          background-color: #fbfbfb;
-          border-radius: 50%;
+            background-color: #fbfbfb;
+            border-radius: 50%;
         }
+        
         #cofee .plate div.outer {
-          width: 100%;
-          height: 100%;
+            width: 100%;
+            height: 100%;
         }
+        
         #cofee .plate div.inner {
-          width: 50%;
-          height: 50%;
-          border: 12px solid #f3f3f3;
-          position: absolute;
-          left: 50%;
-          top: 50%;
-          -webkit-transform: translate(-50%, -50%);
-                  transform: translate(-50%, -50%);
+            width: 50%;
+            height: 50%;
+            border: 12px solid #f3f3f3;
+            position: absolute;
+            left: 50%;
+            top: 50%;
+            -webkit-transform: translate(-50%, -50%);
+            transform: translate(-50%, -50%);
         }
+        
         #cofee .cup {
-          position: absolute;
-          left: 50%;
-          top: 50%;
-          -webkit-transform: translate(-50%, -50%);
-                  transform: translate(-50%, -50%);
-          width: 45%;
-          height: 45%;
+            position: absolute;
+            left: 50%;
+            top: 50%;
+            -webkit-transform: translate(-50%, -50%);
+            transform: translate(-50%, -50%);
+            width: 45%;
+            height: 45%;
         }
+        
         #cofee .cup .grab {
-          position: absolute;
-          width: 20%;
-          height: 15%;
-          right: -15%;
-          top: 50%;
-          -webkit-transform: translateY(-50%);
-                  transform: translateY(-50%);
-          background-color: #fbfbfb;
-          border-radius: 20%;
-          box-shadow: 10px 5px 20px rgba(0, 0, 0, 0.2);
+            position: absolute;
+            width: 20%;
+            height: 15%;
+            right: -15%;
+            top: 50%;
+            -webkit-transform: translateY(-50%);
+            transform: translateY(-50%);
+            background-color: #fbfbfb;
+            border-radius: 20%;
+            box-shadow: 10px 5px 20px rgba(0, 0, 0, 0.2);
         }
+        
         #cofee .cup .content {
-          -webkit-animation: spin 24s linear infinite;
-                  animation: spin 24s linear infinite;
-          border-radius: 50%;
-          width: 85%;
-          height: 85%;
-          position: absolute;
-          left: 50%;
-          top: 50%;
-          -webkit-transform: translate(-50%, -50%);
-                  transform: translate(-50%, -50%);
-          background-color: #d2a579;
+            -webkit-animation: spin 24s linear infinite;
+            animation: spin 24s linear infinite;
+            border-radius: 50%;
+            width: 85%;
+            height: 85%;
+            position: absolute;
+            left: 50%;
+            top: 50%;
+            -webkit-transform: translate(-50%, -50%);
+            transform: translate(-50%, -50%);
+            background-color: #d2a579;
         }
+        
         #cofee .cup .content .bubble {
-          background-color: #dfbf9f;
-          position: relative;
-          border-radius: 50%;
+            background-color: #dfbf9f;
+            position: relative;
+            border-radius: 50%;
         }
+        
         #cofee .cup .content .bubble:nth-child(1) {
-          left: 50%;
-          top: 10%;
-          width: 30%;
-          height: 30%;
+            left: 50%;
+            top: 10%;
+            width: 30%;
+            height: 30%;
         }
+        
         #cofee .cup .content .bubble:nth-child(2) {
-          left: 50%;
-          top: 40%;
-          width: 25%;
-          height: 25%;
+            left: 50%;
+            top: 40%;
+            width: 25%;
+            height: 25%;
         }
+        
         #cofee .cup .content .bubble:nth-child(3) {
-          left: 20%;
-          top: -5%;
-          width: 20%;
-          height: 20%;
+            left: 20%;
+            top: -5%;
+            width: 20%;
+            height: 20%;
         }
+        
         #cofee .cup .border {
-          width: calc(100% - 20px);
-          height: calc(100% - 20px);
-          border-radius: 50%;
-          border: 10px solid #fbfbfb;
-          box-shadow: 10px 5px 30px rgba(0, 0, 0, 0.333);
+            width: calc(100% - 20px);
+            height: calc(100% - 20px);
+            border-radius: 50%;
+            border: 10px solid #fbfbfb;
+            box-shadow: 10px 5px 30px rgba(0, 0, 0, 0.333);
         }
+        
         @-webkit-keyframes spin {
-          from {
-            -webkit-transform: translate(-50%, -50%) rotate(0deg);
-                    transform: translate(-50%, -50%) rotate(0deg);
-          }
-          to {
-            -webkit-transform: translate(-50%, -50%) rotate(360deg);
-                    transform: translate(-50%, -50%) rotate(360deg);
-          }
+            from {
+                -webkit-transform: translate(-50%, -50%) rotate(0deg);
+                transform: translate(-50%, -50%) rotate(0deg);
+            }
+            to {
+                -webkit-transform: translate(-50%, -50%) rotate(360deg);
+                transform: translate(-50%, -50%) rotate(360deg);
+            }
         }
+        
         @keyframes spin {
-          from {
-            -webkit-transform: translate(-50%, -50%) rotate(0deg);
-                    transform: translate(-50%, -50%) rotate(0deg);
-          }
-          to {
-            -webkit-transform: translate(-50%, -50%) rotate(360deg);
-                    transform: translate(-50%, -50%) rotate(360deg);
-          }
+            from {
+                -webkit-transform: translate(-50%, -50%) rotate(0deg);
+                transform: translate(-50%, -50%) rotate(0deg);
+            }
+            to {
+                -webkit-transform: translate(-50%, -50%) rotate(360deg);
+                transform: translate(-50%, -50%) rotate(360deg);
+            }
         }
-
+        
         table {
-        	border: none;
-        	font-family: 'Courier New', Courier, monospace;
-        	font-size: 15px;
-        	background-color: #FFFFCC;
+            border: none;
+            font-family: 'Courier New', Courier, monospace;
+            font-size: 15px;
+            background-color: #FFFFCC;
         }
-
+        
         img {
-        	border: none;
+            border: none;
         }
-
+        
         div {
-        	margin-top: 5px;
-        	margin-bottom: 5px;
+            margin-top: 5px;
+            margin-bottom: 5px;
         }
-
+        
         #Page-Title {
-        	margin-bottom: 1.5em;
-        	border-bottom: 3px double grey;
+            margin-bottom: 1.5em;
+            border-bottom: 3px double grey;
         }
-
+        
         #footer {
             background-color: black;
             color: white;
@@ -158,37 +173,36 @@
             text-align: center;
             padding: 5px;
         }
-
+        
         .Section-Title {
             display: flex;
             justify-content: center;
-        	background-color: #99CCFF;
+            background-color: #99CCFF;
         }
-
+        
         .Flex-Section {
             display: flex;
             justify-content: center;
             text-align: center;
-
         }
-
+        
         .Inline-Section {
-            display:inline-block;
+            display: inline-block;
             justify-content: center;
-            text-align: left;     
-            width: 950px;       
+            text-align: left;
+            width: 950px;
         }
-
+        
         .text-style {
             font-family: 'Courier New', Courier, monospace;
             font-size: 13px;
             margin-right: 20px;
             margin-left: 20px;
-            background-color:#FFFFCC;
+            background-color: #FFFFCC;
         }
-
+        
         ul {
-        	list-style: circle;
+            list-style: circle;
         }
     </style>
 
@@ -196,39 +210,41 @@
 
 <body>
 
-    <div id = "Page-Title">
-        <h1 style = "margin:10px">Min XU（徐敏）</h1>
-        <p style = "margin:10px" id = 'date'></p>
+    <div id="Page-Title">
+        <h1 style="margin:10px">Min XU（徐敏）</h1>
+        <p style="margin:10px" id='date'></p>
         <script>
             document.getElementById('date').innerHTML = new Date().toDateString();
         </script>
     </div>
 
     <table align="center">
-  		<tr>
-  			<td>
-  				<img src = "./javascript/xumin01.jpg" height = "208" width = "288" />
-  			</td>
-    		<td>
-    			<p><b>Min XU<span lang = "zh-Hans" xml:lang = "zh-Hans"> 徐敏 </span></b></p>
-    			<p>Research Assistant</p>
-    			<p>Dept: <a href = "https://www.cse.ust.hk/">Computer Science and Engineering</a></p>
-    			<p><a href = "http://www.ust.hk/">Hong Kong University of Science and Technology</a></p>
-    		</td>
-    		<td><img src = "./javascript/xumin02.jpg" height = "208" width = "288" /></td>
-  		</tr>
-	</table>
-    
-    <div class = "Section-Title"><h2>Education Exprience</h2></div>
-    
-    <div class = "Flex-Section">    
-        <div class = "text-style">
+        <tr>
+            <td>
+                <img src="./javascript/xumin01.jpg" height="208" width="288" />
+            </td>
+            <td>
+                <p><b>Min XU<span lang = "zh-Hans" xml:lang = "zh-Hans"> 徐敏 </span></b></p>
+                <p>Research Assistant</p>
+                <p>Dept: <a href="https://www.cse.ust.hk/">Computer Science and Engineering</a></p>
+                <p><a href="http://www.ust.hk/">Hong Kong University of Science and Technology</a></p>
+            </td>
+            <td><img src="./javascript/xumin02.jpg" height="208" width="288" /></td>
+        </tr>
+    </table>
+
+    <div class="Section-Title">
+        <h2>Education Exprience</h2>
+    </div>
+
+    <div class="Flex-Section">
+        <div class="text-style">
             <h3>Hong Kong University of Science and Technology</h3>
             <p><b>2017.09-2018.07</b>&ensp;Hong Kong</p>
             <p>Major: Big Data Technology</p>
             <p>Master of Science</p>
         </div>
-        <div class = "text-style">
+        <div class="text-style">
             <h3>South China University of Technology</h3>
             <p><b>2013.09-2017.07</b>&ensp;Guang Zhou</p>
             <p>Major: Electronic Engineering</p>
@@ -236,87 +252,109 @@
         </div>
     </div>
 
-    <div class = "Section-Title"><h2> Work Exprience</h2></div>
+    <div class="Section-Title">
+        <h2> Work Exprience</h2>
+    </div>
 
-     <div class = "Flex-Section">    
-        <div class = "text-style">
+    <div class="Flex-Section">
+        <div class="text-style">
+            <h3>Hong Kong University of Science and Technology</h3>
+            <p><b>2018.09-now</b>&ensp;Hong Kong</p>
+            <p>Postion: Research Assistant</p>
+            <p>Data Analytics in E-Learning Project</p>
+        </div>
+        <div class="text-style">
             <h3>Tencent Cloud</h3>
             <p><b>2018.06-2018.08</b>&ensp;Shen Zhen</p>
             <p>Postion: Product Manager(Intern)</p>
             <p>Update the Document of Cloud Object Storage</p>
             <p>Improve the Function of Cloud Object Storage</p>
         </div>
-        <div class = "text-style">
+        <div class="text-style">
             <h3>Intetix Technology(Beijing) Co.,Ltd.</h3>
             <p><b>2015.12-2016.09</b>&ensp;Guang Zhou</p>
             <p>Postion: Compilation Group(Intern)</p>
             <p>Translate the Foreign Documents about Big Data</p>
             <p>Improve Typesetting and Promote the Documents</p>
         </div>
-    </div>   
 
-    <div class = "Section-Title"><h2>Project Exprience</h2></div>
+    </div>
 
-    <div class = "Inline-Section">    
-        <div class = "text-style">
-        	<ul>
-	            <li>
-	            	<p><b>2018.02-2018.06&ensp;Chinese Word Correction</b> </p>
-	            	<p>Depends on the given corpus about microblog to find a way to build a Chinese word correction model.</p>
-	        	</li>
+    <div class="Section-Title">
+        <h2>Project Exprience</h2>
+    </div>
 
-	            <li>
-	            	<p><b>2017.09-2017.12&ensp;Snowball Project with Reinforcement Learning</b> </p>
-	            	<p>According to 3-year stock records, based on Q-Learning Algorithm, give choice on the stock, portfolio and industry.</p>
-	            </li>
+    <div class="Inline-Section">
+        <div class="text-style">
+            <ul>
+                <li>
+                    <p><b>2018.02-2018.06&ensp;Chinese Word Correction</b> </p>
+                    <p>Depends on the given corpus about microblog to find a way to build a Chinese word correction model.</p>
+                </li>
 
-	            <li>
-	            	<p><b>2017.09-2017.12&ensp;Data Visualization of Four Major Industries Development in Hong Kong</b></p>
-	            	<p>Design data visualization based on the statistic data of four major industries in Hong Kong from 2010 to 2016.</p>
-	            </li>
+                <li>
+                    <p><b>2017.09-2017.12&ensp;Snowball Project with Reinforcement Learning</b> </p>
+                    <p>According to 3-year stock records, based on Q-Learning Algorithm, give choice on the stock, portfolio and industry.</p>
+                </li>
 
-	            <li>
-	            	<p><b>2016.09-2017.07&ensp;Hign Gain Filter Patch Antenna</b></p>
-	            	<p>Based on the traditional patch antenna, validate the effect of U-slot, short pin and air gap and then improve the performamce of antenna.</p>
-	            </li>
-            </ul> 
+                <li>
+                    <p><b>2017.09-2017.12&ensp;Data Visualization of Four Major Industries Development in Hong Kong</b></p>
+                    <p>Design data visualization based on the statistic data of four major industries in Hong Kong from 2010 to 2016.</p>
+                </li>
+
+                <li>
+                    <p><b>2016.09-2017.07&ensp;Hign Gain Filter Patch Antenna</b></p>
+                    <p>Based on the traditional patch antenna, validate the effect of U-slot, short pin and air gap and then improve the performamce of antenna.</p>
+                </li>
+            </ul>
         </div>
     </div>
 
-    <div class = "Section-Title"><h2>Honors</h2></div>
-
-    <div class = "Inline-Section">
-    	<div class = "text-style">
-    		<ul>
-    			<li><p><b>2017.11</b> &ensp; Entrance Scholarship for MSc in BDT program, HKUST</p></li>
-    			<li><p><b>2015.07</b> &ensp; Third-class scholarship, SCUT</p></li>
-    			<li><p><b>2014.07</b> &ensp; Third-class scholarship, SCUT</p></li>
-    		</ul>
-    	</div>
+    <div class="Section-Title">
+        <h2>Honors</h2>
     </div>
 
-    <div class = "Section-Title"><h2>Interests</h2></div>
+    <div class="Inline-Section">
+        <div class="text-style">
+            <ul>
+                <li>
+                    <p><b>2017.11</b> &ensp; Entrance Scholarship for MSc in BDT program, HKUST</p>
+                </li>
+                <li>
+                    <p><b>2015.07</b> &ensp; Third-class scholarship, SCUT</p>
+                </li>
+                <li>
+                    <p><b>2014.07</b> &ensp; Third-class scholarship, SCUT</p>
+                </li>
+            </ul>
+        </div>
+    </div>
 
-    <table align = "center" width="950px">
-    	<tr>
-    		<th>Volleyball</th>
-    		<th>Swimming</th>
-    		<th>Photography</th>
-    		<th>Travel</th>
-    	</tr>
-    	<tr>
-    		<td><img src = "./javascript/volleyball.png" height = "80" width = "80"/></td>
-    		<td><img src = "./javascript/goggles.png" height = "80" width = "80"/></td>
-    		<td><img src = "./javascript/camera.png" height = "80" width = "80"/></td>
-    		<td><img src = "./javascript/backpack.png" height = "80" width = "80"/></td>
-    	</tr>
+    <div class="Section-Title">
+        <h2>Interests</h2>
+    </div>
+
+    <table align="center" width="950px">
+        <tr>
+            <th>Volleyball</th>
+            <th>Swimming</th>
+            <th>Photography</th>
+            <th>Travel</th>
+        </tr>
+        <tr>
+            <td><img src="./javascript/volleyball.png" height="80" width="80" /></td>
+            <td><img src="./javascript/goggles.png" height="80" width="80" /></td>
+            <td><img src="./javascript/camera.png" height="80" width="80" /></td>
+            <td><img src="./javascript/backpack.png" height="80" width="80" /></td>
+        </tr>
     </table>
 
-    <div id = "footer">
+    <div id="footer">
         <p>
-            <a href="https://www.facebook.com/profile.php?id=100008581743454"><img src = "./javascript/facebook.png" width="30px" height="30px" /></a>
+            <a href="https://www.facebook.com/profile.php?id=100008581743454"><img src="./javascript/facebook.png" width="30px" height="30px" /></a>
             &ensp;&ensp;&ensp;&ensp;&ensp;&ensp;More About Me&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;
-            <a href="https://www.instagram.com/xumin_0430/"><img src = "./javascript/instagram.png" width="30px" height="30px" /></a></p>
+            <a href="https://www.instagram.com/xumin_0430/"><img src="./javascript/instagram.png" width="30px" height="30px" /></a>
+        </p>
     </div>
 
     <div id='cofee' style="z-index:-100">
@@ -338,4 +376,4 @@
 
 </body>
 
-</html> 
+</html>
