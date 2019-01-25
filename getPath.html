@@ -1,0 +1,21 @@
+<html>
+<button id="minmin" class="if i know">hi</button>
+<p>test for getting path</p>
+<p id="demo"></p>
+
+</html>
+<script>
+    document.addEventListener("click", getPath)
+
+    function getPath(event) {
+        var target = event.target;
+        var pathstr = "";
+        pathstr = "," + target.tagName + "#" + target.id + "." + target.classList.value.replace(/ /g, ".") + pathstr;
+        for (; target.parentElement != null;) {
+            target = target.parentElement; //.nodeName;
+            pathstr = "," + target.tagName + "#" + target.id + "." + target.classList.value.replace(/ /g, ".") + pathstr;
+        }
+        document.getElementById("demo").innerHTML = pathstr.slice(1);
+
+    }
+</script>
