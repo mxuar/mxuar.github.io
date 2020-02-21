@@ -1,0 +1,134 @@
+#cover {
+    height: 1600px;
+    width: 100%;
+    margin-top: -10px;
+    position: fixed;
+}
+
+#cover_Img {
+    height: -webkit-fill-available;
+    width: -webkit-fill-available;
+    margin-left: 240px;
+    position: fixed;
+    z-index: -10000;
+}
+
+.cover_svg {
+    width: -webkit-fill-available;
+    height: 1600px;
+}
+
+.cover_title text {
+    font-family: cursive;
+    font-size: 60px;
+    z-index: 1000;
+    fill: rgb(231, 225, 191);
+    stroke: rgb(80, 78, 78);
+    font-weight: bolder
+}
+
+.cover_text text {
+    font-size: 24px;
+    font-family: cursive;
+    stroke: black;
+}
+
+.covertext_button {
+    fill: rgb(114, 51, 9);
+    opacity: 0.7;
+}
+
+#selection_window {
+    width: 250px;
+    height: 1600px;
+    position: fixed;
+    z-index: 1000;
+    top: 0;
+    left: 0
+}
+
+#selection_content {
+    height: 1600px;
+    background: rgb(51, 51, 51);
+}
+
+#selection_title {
+    font-family: fantasy;
+    font-weight: bold;
+    font-size: 55px;
+    stroke: lemonchiffon;
+    fill: lightsalmon;
+    opacity: 0.8;
+}
+
+.selection_icon {
+    width: 30px;
+    height: 35px;
+}
+
+.selection_text {
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    font-size: 25px;
+    fill: white;
+}
+
+.date_svg text {
+    font-size: 18px;
+    fill: white;
+    font-family: 'Courier New', Courier, monospace
+}
+
+.about {
+    width: -webkit-fill-available;
+    height: 150px;
+    transform: translate(0, 90px)
+}
+
+#about_title {
+    width: -webkit-fill-available;
+    height: 230px;
+}
+
+.abouttitle_svg text {
+    font-size: 80px;
+    font-family: fantasy;
+    font-weight: bolder;
+}
+
+#about_content {
+    position: absolute;
+    width: -webkit-fill-available;
+    height: 2000px;
+}
+
+.about_photo {
+    transform: translate(80px, 0);
+    position: fixed;
+}
+
+.about_text {
+    position: fixed;
+}
+
+.abouttext_ques {
+    font-size: 28px;
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    font-weight: bold;
+    fill: #555555;
+}
+
+.abouttext_answ {
+    font-size: 28px;
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    fill: #888888;
+}
+
+.about_exp {
+    width: -webkit-fill-available;
+    height: 800px;
+}
+
+.aboutexp_describe {
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    fill: #555555;
+}

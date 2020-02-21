@@ -1,0 +1,502 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Min XU's Homepage</title>
+    <link rel="stylesheet" type="text/css" href="index.css" />
+    <script src="https://d3js.org/d3.v5.min.js"></script>
+</head>
+
+<body>
+    <div id='selection_window'>
+        <div id='selection_content'>
+            <svg class='selection_svg' width='250' height='1400' style='transform:translate(0, 200px)'></svg>
+        </div>
+    </div>
+    <div id="about_title">
+        <svg class='about'></svg>
+    </div>
+    <div id="about_content">
+        <div class='about_photo'>
+            <img src='javascript/About.jpg' id='about_photo'>
+        </div>
+        <div class='about_text'></div>
+        <div class='about_exp' id='about_exp_id'>
+            <div class='about_exp_work'></div>
+            <div class='about_exp_educ'></div>
+            <div class='about_exp_award'></div>
+        </div>
+        <div class='about_pub'></div>
+    </div>
+
+
+    <script>
+        let title_svg = d3.select('.selection_svg')
+            .append('g')
+            .attr('class', 'title_svg')
+            .attr('width', 250)
+            .attr('height', 100)
+
+        title_svg.append('text')
+            .attr('id', 'selection_title')
+            .attr('x', 25)
+            .attr('y', 50)
+            .text('Min XU')
+
+        // selection_context_filename = ['Homepage', 'About', 'Photo', 'Blog', 'Contact']
+        let selection_context_filename = ['Homepage', 'About'],
+            selection_context_pagename = ['index.html', 'about.html', 'photo.html', 'blog', 'contact'];
+
+        for (let i = 0; i < selection_context_filename.length; i++) {
+            let context_svg = d3.select('.selection_svg')
+                .append('g')
+                .attr('class', 'context_svg')
+                .attr('width', 250)
+                .attr('height', 80)
+                .style('transform', 'translate(25px,' + (120 + i * 65) + 'px)')
+
+            context_svg.append('svg:image')
+                .attr('xlink:href', "javascript/" + selection_context_filename[i] + ".svg")
+                .attr('class', 'selection_icon')
+
+            context_svg.append('text')
+                .attr('class', 'selection_text')
+                .text(selection_context_filename[i])
+                .style('transform', 'translate(45px, 29px)')
+                .on("click", function() {
+                    window.location.href = selection_context_pagename[i];
+                })
+
+        }
+
+        let date_svg = d3.select('.selection_svg')
+            .append('g')
+            .attr('class', 'date_svg')
+            .attr('width', 250)
+            .attr('height', 50)
+            .style('transform', 'translate(25px, 800px)')
+
+        date_svg.append('text')
+            .text(function() {
+                return new Date().toDateString()
+            });
+
+        // --------------- selection part --------------------------------------------------------------------
+
+        function getTextWidth(str, fontSize) {
+            var width = 0;
+            var html = document.createElement('span');
+            html.innerText = str;
+            html.className = 'getTextWidth';
+            html.style.fontSize = String(fontSize) + "px";
+            document.querySelector('body').appendChild(html);
+            width = document.querySelector('.getTextWidth').offsetWidth;
+            height = document.querySelector('.getTextWidth').offsetHeight;
+            document.querySelector('.getTextWidth').remove();
+            return [width, height];
+        }
+
+        let titletext_width = getTextWidth('Me', 80)[0] + 50 + getTextWidth('About', 80)[0];
+
+        abouttitle_svg = d3.select('.about').append('g')
+            .attr('class', 'abouttitle_svg')
+            .style('transform', 'translate(0px, 10px)')
+
+        abouttitle_svg.append('text')
+            .text('About')
+            .style('transform', 'translate(' + ((document.body.clientWidth - 250) / 2 + 250 - titletext_width / 2) + "px, 70px)")
+            .style('text-anchor', 'start');
+
+        abouttitle_svg.append('text')
+            .text('Me')
+            .style('transform', 'translate(' + ((document.body.clientWidth - 250) / 2 + 250 + getTextWidth('About', 80)[0] - titletext_width / 2 + 50) + "px, 70px)")
+            .style('fill', '#c4a857')
+            .style('text-anchor', 'start');
+
+        let defs = abouttitle_svg.append('defs'),
+            linearGradient = defs.append('linearGradient')
+            .attr('id', 'linearGradient')
+            .attr('x1', '0%')
+            .attr('y1', '0%')
+            .attr('x2', '100%')
+            .attr('y2', '0%'),
+            stop1 = linearGradient.append('stop').attr('offset', '0%').style('stop-color', '#000000'),
+            stop2 = linearGradient.append('stop').attr('offset', '100%').style('stop-color', '#c4a857');
+
+
+        abouttitle_svg.append('rect')
+            .attr('width', titletext_width * 2)
+            .attr('height', 10)
+            .style('transform', 'translate(' + ((document.body.clientWidth - 250) / 2 + 250 - titletext_width) + "px, 85px)")
+            .style('fill', "url(#" + linearGradient.attr("id") + ")");
+
+        d3.select('#about_content')
+            .style('transform', 'translate(250px,0px)')
+        d3.select('.about_photo')
+            .attr('width', (document.body.clientWidth - 250) / 2 - 150 + 'px')
+        d3.select('#about_photo')
+            .attr('width', (document.body.clientWidth - 250) / 2 - 150 + 'px')
+
+        let abouttext_quesdata = ['Name', 'Birth', 'Nationality', 'Degree', 'Major', 'Current Position', 'Dept', 'Email'],
+            abouttext_answdata = ['Min XU', '1995/04/30', 'China', 'Master', 'Big Data Technology', 'Research Assistant', 'CSE in HKUST', 'xuminxm430@gmail.com'];
+
+        d3.select('.about_text').style('transform', 'translate(' + (document.body.clientWidth / 2 - 125) + "px,0px)")
+
+        let aboutphoto_height = ((document.body.clientWidth - 250) / 2 - 150) * 582.66 / 437;
+        let abouttext_svg = d3.select('.about_text')
+            .append('svg')
+            .attr('width', document.body.clientWidth / 2)
+            .attr('height', aboutphoto_height)
+
+        for (let i = 0; i < abouttext_quesdata.length; i++) {
+            abouttext_svg.append('g').append('text')
+                .attr('class', 'abouttext_ques')
+                .attr('id', 'aboutques_' + i)
+                .text(abouttext_quesdata[i] + ":")
+                .style('transform', 'translate(0px,' + aboutphoto_height / abouttext_quesdata.length * (i + 0.6) + "px)");
+
+            abouttext_svg.append('path')
+                .style('transform', 'translate(0px,' + (aboutphoto_height / abouttext_quesdata.length * (i + 1) - 4) + "px)")
+                .attr('d', function() {
+                    return "M0,0L" + String(document.body.clientWidth / 2 - 125) + ",0"
+                })
+                .style('stroke', 'grey')
+                .style('stroke-width', 4)
+                .style('opacity', 0.2)
+
+            abouttext_svg.append('g').append('text')
+                .attr('class', 'abouttext_answ')
+                .text(abouttext_answdata[i])
+                .style('transform', 'translate(' + (getTextWidth(abouttext_quesdata[i] + ":", 32)[0] + 100) + "px, " + aboutphoto_height / abouttext_quesdata.length * (i + 0.6) + "px)");
+        }
+
+        // --------------- photo and text part --------------------------------------------------------------------
+
+        d3.select('.about_exp')
+            .style('transform', 'translate(0px, ' + (((document.body.clientWidth - 250) / 2 - 150) * 582.66 / 437 + 40) + "px)")
+
+        let workdata = {
+                'part_title': 'Work Exprience',
+                'part_data': [
+                    ['Hong Kong University of Science and Technology', '2018.09-2020.07', 'Hong Kong', 'Postion: Research Assistant', 'Data Analytics and Visualization in E-Learning Project, Help Paper Submission (VIS and EuroVis)'],
+                    ['Tencent Cloud', '2018.06-2018.08', 'Shen Zhen', 'Postion: Product Manager(Intern)', 'Update the Document of Cloud Object Storage, Improve the Function of Cloud Object Storag'],
+                    ['Intetix Technology(Beijing) Co.,Ltd.', '2015.12-2016.09', 'Guang Zhou', 'Postion: Compilation Group(Intern)', 'Translate the Foreign Documents about Big Data, Improve Typesetting and Promote the Documents']
+                ]
+            },
+            educdata = {
+                'part_title': 'Education Exprience',
+                'part_data': [
+                    ['Hong Kong University of Science and Technology', '2017.09-2018.07', 'Hong Kong', 'Major: Big Data Technology', 'Master of Science'],
+                    ['South China University of Technology', '2013.09-2017.07', 'Guang Zhou', 'Major: Electronic Engineering', 'Bachelor of Science']
+                ]
+            },
+            honordata = {
+                'part_title': 'Awards',
+                'part_data': [
+                    ['BOCHK Hackathon 2019 Young Talent Award', '2019.12', 'BOCHK', '', ''],
+                    ['IEEE VIS 2019 Best Poster Award', '2019.08', 'IEEE VIS 19', '', ''],
+                    ['Entrance Scholarship for MSc in BDT program', '2017.11', 'HKUST', '', ''],
+                    ['Third-class scholarship', '2013.07-2015.07', 'SCUT', '', '']
+                ]
+            };
+
+        let aboutexp_partwidth = (document.body.clientWidth - 160) / 2 - 100,
+            // aboutwork_svgheight = 150 * (workdata['part_data'].length + 2),
+            aboutexp_gap = 30,
+            abouteduc_svgheight = 150 * (educdata['part_data'].length + 1),
+            abouthonor_svgheight = 80 * (honordata['part_data'].length + 1),
+            aboutwork_svgheight = abouteduc_svgheight + abouthonor_svgheight + aboutexp_gap;
+
+        d3.select('.about_exp_work')
+            .style('transform', 'translate(80px, 0px)')
+            .style('width', aboutexp_partwidth + 'px')
+            .style('height', aboutwork_svgheight + 'px');
+        d3.select('.about_exp_educ')
+            .style('position', 'absolute')
+            .style('transform', 'translate(' + (aboutexp_partwidth + 80 + aboutexp_gap) + 'px,' + (-aboutwork_svgheight) + 'px)');
+        d3.select('.about_exp_award')
+            .style('position', 'absolute')
+            .style('transform', 'translate(' + (aboutexp_partwidth + 80 + aboutexp_gap) + 'px,' + (abouteduc_svgheight + aboutexp_gap - aboutwork_svgheight) + 'px)');
+        let aboutworkexp_svg = d3.select('.about_exp_work')
+            .append('svg')
+            .attr('width', aboutexp_partwidth)
+            .attr('height', aboutwork_svgheight);
+        let abouteducexp_svg = d3.select('.about_exp_educ')
+            .append('svg')
+            .attr('width', aboutexp_partwidth)
+            .attr('height', abouteduc_svgheight);
+        let abouthonorexp_svg = d3.select('.about_exp_award')
+            .append('svg')
+            .attr('width', aboutexp_partwidth)
+            .attr('height', abouthonor_svgheight);
+        aboutworkexp_svg.append('rect')
+            .attr('width', aboutexp_partwidth)
+            .attr('height', aboutwork_svgheight)
+            .style('fill', '#f1d6ab')
+            .style('opacity', 0.5);
+        abouteducexp_svg.append('rect')
+            .attr('width', aboutexp_partwidth)
+            .attr('height', abouteduc_svgheight)
+            .style('fill', '#c2e8ce')
+            .style('opacity', 0.5);
+        abouthonorexp_svg.append('rect')
+            .attr('width', aboutexp_partwidth)
+            .attr('height', abouthonor_svgheight)
+            .style('fill', '#f6ad7b')
+            .style('opacity', 0.5);
+
+        function aboutexp_append(svg, data, partheight) {
+            svg.append('text')
+                .attr('class', 'abouttext_ques')
+                .text(data['part_title'])
+                .style('transform', 'translate(' + (aboutexp_partwidth - getTextWidth(data['part_title'], 36)[0]) / 2 + "px, 40px)")
+
+            svg.append('path')
+                .attr('d', function() {
+                    return 'M0, 0L' + String(aboutexp_partwidth) + ", 0"
+                })
+                .style('transform', 'translate(0, 50px)')
+                .style('stroke', 'grey')
+                .style('opacity', 0.2)
+                .style('stroke-width', 3);
+
+            let part_svg = svg.append('g').style('transform', 'translate(0px, 53px)')
+
+            let singlepart_height = (partheight - 60) / data['part_data'].length,
+                logwidth = 30;
+
+            for (let itemnum = 0; itemnum < data['part_data'].length; itemnum++) {
+                part_svg.append('text')
+                    .text(data['part_data'][itemnum][0])
+                    .style('font-size', function() {
+                        let suitablesize = 30
+                        for (let i = 0; i < 11; i++) {
+                            if (getTextWidth(data['part_data'][0][0], 30 - i)[0] <= aboutexp_partwidth - 50) {
+                                suitablesize = 26 - i;
+                                break;
+                            }
+                            if (i == 10) {
+                                suitablesize = 16;
+                            }
+                        }
+                        return suitablesize
+                    })
+                    .style('font-weight', 'bold')
+                    .style('transform', 'translate(10px,' + (30 + singlepart_height * itemnum) + 'px)')
+                    .style('fill', '#555555')
+                    .style('font-family', "'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif");
+
+                part_svg.append('svg:image')
+                    .attr('xlink:href', 'javascript/calendar.svg')
+                    .attr('width', logwidth)
+                    .attr('height', logwidth)
+                    .style('transform', 'translate(10px,' + (40 + singlepart_height * itemnum) + 'px)');
+
+                part_svg.append('text')
+                    .attr('class', 'aboutexp_describe')
+                    .style('font-size', function() {
+                        let suitablesize = 20
+                        for (let i = 0; i < 11; i++) {
+                            if (getTextWidth(data['part_data'][itemnum][1], 20 - i)[0] <= aboutexp_partwidth / 2 - 55) {
+                                suitablesize = 20 - i;
+                                break;
+                            }
+                            if (i == 10) {
+                                suitablesize = 12;
+                            }
+                        }
+                        return suitablesize
+                    })
+                    .text(data['part_data'][itemnum][1])
+                    .style('transform', 'translate(50px,' + (65 + singlepart_height * itemnum) + 'px)');
+
+                part_svg.append('svg:image')
+                    .attr('xlink:href', 'javascript/pin.svg')
+                    .attr('width', logwidth)
+                    .attr('height', logwidth)
+                    .style('transform', 'translate(' + aboutexp_partwidth / 2 + "px," + (40 + singlepart_height * itemnum) + "px)");
+
+                part_svg.append('text')
+                    .attr('class', 'aboutexp_describe')
+                    .style('font-size', function() {
+                        let suitablesize = 20
+                        for (let i = 0; i < 11; i++) {
+                            if (getTextWidth(data['part_data'][itemnum][2], 20 - i)[0] <= aboutexp_partwidth / 2 - 55) {
+                                suitablesize = 20 - i;
+                                break;
+                            }
+                            if (i == 10) {
+                                suitablesize = 12;
+                            }
+                        }
+                        return suitablesize
+                    })
+                    .text(data['part_data'][itemnum][2])
+                    .style('transform', 'translate(' + (aboutexp_partwidth / 2 + 40) + 'px,' + (65 + singlepart_height * itemnum) + 'px)');
+
+                part_svg.append('text')
+                    .attr('class', 'aboutexp_describe')
+                    .style('font-size', function() {
+                        let suitablesize = 25
+                        for (let i = 0; i < 11; i++) {
+                            if (getTextWidth(data['part_data'][itemnum][3], 25 - i)[0] <= aboutexp_partwidth - 50) {
+                                suitablesize = 25 - i;
+                                break;
+                            }
+                            if (i == 10) {
+                                suitablesize = 15;
+                            }
+                        }
+                        return suitablesize
+                    })
+                    .text(data['part_data'][itemnum][3])
+                    .style('transform', 'translate(10px,' + (100 + singlepart_height * itemnum) + 'px)');
+
+                for (let j = 0; j < data['part_data'][itemnum][4].split(',').length; j++) {
+                    part_svg.append('text')
+                        .attr('class', 'aboutexp_describe')
+                        .style('font-size', function() {
+                            let suitablesize = 25
+                            for (let i = 0; i < 11; i++) {
+                                if (getTextWidth(data['part_data'][itemnum][4].split(',')[j], 27 - i)[0] <= aboutexp_partwidth - 50) {
+                                    suitablesize = 25 - i;
+                                    break;
+                                }
+                                if (i == 10) {
+                                    suitablesize = 15;
+                                }
+                            }
+                            if (data['part_title'] == 'Work Exprience') {
+                                return suitablesize
+                            }
+                            return suitablesize
+                        })
+                        .text(data['part_data'][itemnum][4].split(',')[j])
+                        .style('transform', 'translate(10px,' + (100 + 35 * (j + 1) + itemnum * singlepart_height) + 'px)');
+
+                }
+            }
+
+        }
+
+        aboutexp_append(aboutworkexp_svg, workdata, aboutwork_svgheight);
+        aboutexp_append(abouteducexp_svg, educdata, abouteduc_svgheight);
+        aboutexp_append(abouthonorexp_svg, honordata, abouthonor_svgheight);
+
+        document.getElementById('about_exp_id').style.height = aboutwork_svgheight + 'px';
+
+        // --------------- exprience part --------------------------------------------------------------------
+        d3.select('.about_pub')
+            .style('transform', 'translate(80px,' + (abouthonor_svgheight + abouteduc_svgheight) * 3 / 4 + 'px)')
+
+        let pubdata = {
+            'part_title': 'Publications',
+            'part_data': [
+                ['SeqDynamics: Visual Analytics for Evaluating Online Problem-solving Dynamics', 'EuroVis 2020', 'Meng Xia, Min Xu, Chuan-en Lin, Ta-ying Cheng, Huamin Qu, Xiaojuan Ma'],
+                ["Visual Analytics of Student Learning Behaviors on K-12 Mathematics E-learning Platforms(Poster)", 'IEEE VIS 2019 Posters', 'Meng Xia, Huan Wei, Min Xu, Leo Yu Ho Lo, Yong Wang, Rong Zhang, Huamin Qu']
+            ]
+        };
+        let aboutpub_partheight = 120,
+            aboutpub_height = aboutpub_partheight * pubdata['part_data'].length + 50;
+        let aboutpub_svg = d3.select('.about_pub').append('svg')
+            .attr('width', aboutexp_partwidth * 2 + aboutexp_gap)
+            .attr('height', aboutpub_height);
+
+        aboutpub_svg.append('rect')
+            .attr('width', aboutexp_partwidth * 2 + aboutexp_gap)
+            .attr('height', aboutpub_height)
+            .style('fill', '#be7575')
+            .style('opacity', 0.5);
+
+        aboutpub_svg.append('text')
+            .attr('class', 'abouttext_ques')
+            .text(pubdata['part_title'])
+            .style('transform', 'translate(' + ((aboutexp_partwidth * 2 + aboutexp_gap) / 2 - getTextWidth(pubdata['part_title'], 28)[0] / 2) + 'px, 40px)');
+
+        aboutpub_svg.append('path')
+            .attr('d', function() {
+                return 'M0, 0L' + String(aboutexp_partwidth * 2 + aboutexp_gap) + ", 0"
+            })
+            .style('transform', 'translate(0, 50px)')
+            .style('stroke', 'grey')
+            .style('opacity', 0.2)
+            .style('stroke-width', 3);
+
+        for (let itemnum = 0; itemnum < pubdata['part_data'].length; itemnum++) {
+            let logwidth = 30;
+            let aboutpub_g = aboutpub_svg.append('g')
+                .attr('class', 'about_pub_' + itemnum)
+                .style('transform', 'translate(0px,' + (53 + aboutpub_partheight * itemnum) + "px)")
+
+            aboutpub_g.append('text')
+                .text(pubdata['part_data'][itemnum][0])
+                .style('font-size', function() {
+                    let suitablesize = 30
+                    for (let i = 0; i < 11; i++) {
+                        if (getTextWidth(pubdata['part_data'][0][0], 30 - i)[0] <= aboutexp_partwidth * 2 + aboutexp_gap - 150) {
+                            suitablesize = 26 - i;
+                            break;
+                        }
+                        if (i == 10) {
+                            suitablesize = 16;
+                        }
+                    }
+                    return suitablesize
+                })
+                .style('font-weight', 'bold')
+                .style('transform', 'translate(10px,30px)')
+                .style('fill', '#555555')
+                .style('font-family', "'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif");
+
+            aboutpub_g.append('svg:image')
+                .attr('xlink:href', 'javascript/pin.svg')
+                .attr('width', logwidth)
+                .attr('height', logwidth)
+                .style('transform', 'translate(10px,40px)');
+
+            aboutpub_g.append('text')
+                .attr('class', 'aboutexp_describe')
+                .style('font-size', function() {
+                    let suitablesize = 20
+                    for (let i = 0; i < 11; i++) {
+                        if (getTextWidth(pubdata['part_data'][itemnum][1], 20 - i)[0] <= aboutexp_partwidth * 2 + aboutexp_gap - 150) {
+                            suitablesize = 20 - i;
+                            break;
+                        }
+                        if (i == 10) {
+                            suitablesize = 12;
+                        }
+                    }
+                    return suitablesize
+                })
+                .text(pubdata['part_data'][itemnum][1])
+                .style('transform', 'translate(50px, 65px)');
+
+            aboutpub_g.append('svg:image')
+                .attr('xlink:href', 'javascript/avatar.svg')
+                .attr('width', logwidth)
+                .attr('height', logwidth)
+                .style('transform', 'translate(10px,80px)');
+
+            aboutpub_g.append('text')
+                .attr('class', 'aboutexp_describe')
+                .style('font-size', function() {
+                    let suitablesize = 20
+                    for (let i = 0; i < 11; i++) {
+                        if (getTextWidth(pubdata['part_data'][itemnum][2], 20 - i)[0] <= aboutexp_partwidth * 2 + aboutexp_gap - 150) {
+                            suitablesize = 20 - i;
+                            break;
+                        }
+                        if (i == 10) {
+                            suitablesize = 12;
+                        }
+                    }
+                    return suitablesize
+                })
+                .text(pubdata['part_data'][itemnum][2])
+                .style('transform', 'translate(50px, 100px)');
+        }
+    </script>
+</body>
+
+</html>
