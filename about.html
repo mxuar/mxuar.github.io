@@ -3,85 +3,91 @@
 
 <head>
     <title>Min XU's Homepage</title>
-    <link rel="stylesheet" type="text/css" href="index.css" />
+    <script src="jquery.js"></script>
+    <link rel="stylesheet" type="text/css" href="bootstrap.css" />
     <script src="https://d3js.org/d3.v5.min.js"></script>
+    <script src="bootstrap.js"></script>
+    <link rel="stylesheet" type="text/css" href="index.css" />
 </head>
 
-<body>
-    <div id='selection_window'>
-        <div id='selection_content'>
-            <svg class='selection_svg' width='250' height='1400' style='transform:translate(0, 200px)'></svg>
+<body onload="visitTime()">
+    <div style='display: flex; flex-direction: row;height: 800px;'>
+        <div class="col-lg-2" style='display: flex;flex-direction: column;justify-content:center;align-items: center; background-color: rgb(51, 51, 51);'>
+            <p id='selection_title'>Min XU</p>
+            <div class='tab_selection'>
+                <img src='javascript/Homepage.svg' class='selection_icon' onclick="window.location.replace('index.html')" />
+                <p class='selection_text' onclick="window.location.replace('index.html')">Homepage</p>
+            </div>
+            <div class='tab_selection'>
+                <img src='javascript/About.svg' class='selection_icon' onclick="window.location.replace('about.html')" />
+                <p class='selection_text' onclick="window.location.replace('index.html')">About</p>
+            </div>
+            <div style='margin-top: 200px'>
+                <span id='clock'></span>
+            </div>
         </div>
-    </div>
-    <div id="about_title">
-        <svg class='about'></svg>
-    </div>
-    <div id="about_content">
-        <div class='about_photo'>
-            <img src='javascript/About.jpg' id='about_photo'>
+
+        <div id='about_content' class='col-lg-10' style='display: flex;flex-direction: column;'>
+            <div id="about_title">
+                <svg id='about_title_svg'></svg>
+            </div>
+            <div style='display: flex; flex-direction: column; align-items: center;margin-top:25px'>
+                <div style='display: flex; flex-direction: row'>
+                    <div class='col-lg-5' id='about_photo'>
+                        <img src='javascript/About.jpg' class='col-lg-12'>
+                    </div>
+                    <div class='about_text col-lg-7'>
+                        <div class='border_style' style='margin-top:0px'>
+                            <p><span class='Q_text'>Name:</span> <span class='A_text' style='margin-left: 100px'>Min XU</span></p>
+                        </div>
+                        <div class='border_style'>
+                            <p><span class='Q_text'>Birth:</span> <span class='A_text' style='margin-left: 100px'>04.30</span></p>
+                        </div>
+                        <div class='border_style'>
+                            <p><span class='Q_text'>Nationality:</span> <span class='A_text' style='margin-left: 100px'>China</span></p>
+                        </div>
+                        <div class='border_style'>
+                            <p><span class='Q_text'>Degree:</span> <span class='A_text' style='margin-left: 100px'>Master</span></p>
+                        </div>
+                        <div class='border_style'>
+                            <p><span class='Q_text'>Major:</span> <span class='A_text' style='margin-left: 100px'>Big Data Technology</span></p>
+                        </div>
+                        <div class='border_style'>
+                            <p><span class='Q_text'>Current Position:</span> <span class='A_text' style='margin-left: 100px'>Research Assistant</span></p>
+                        </div>
+                        <div class='border_style'>
+                            <p><span class='Q_text'>Dept:</span> <span class='A_text' style='margin-left: 100px'>CSE in HKUST</span></p>
+                        </div>
+                        <div class='border_style'>
+                            <p><span class='Q_text'>Email:</span> <span class='A_text' style='margin-left: 100px'>xuminxm430@gmail.com</span></p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class='about_exp part_gap' id='about_exp_id' style='display: flex;flex-direction: row;'>
+                    <div class='about_exp_work col-lg-6'></div>
+                    <div class='col-lg-6' style='display: flex;flex-direction: column'>
+                        <div class='about_exp_educ'></div>
+                        <div class='about_exp_award' style='margin-top: 30px'></div>
+                    </div>
+                </div>
+                <div class='about_pub part_gap'></div>
+            </div>
         </div>
-        <div class='about_text'></div>
-        <div class='about_exp' id='about_exp_id'>
-            <div class='about_exp_work'></div>
-            <div class='about_exp_educ'></div>
-            <div class='about_exp_award'></div>
-        </div>
-        <div class='about_pub'></div>
     </div>
 
 
     <script>
-        let title_svg = d3.select('.selection_svg')
-            .append('g')
-            .attr('class', 'title_svg')
-            .attr('width', 250)
-            .attr('height', 100)
-
-        title_svg.append('text')
-            .attr('id', 'selection_title')
-            .attr('x', 25)
-            .attr('y', 50)
-            .text('Min XU')
+        function visitTime() {
+            document.getElementById('clock').innerHTML = new Date().toDateString();
+        }
 
         // selection_context_filename = ['Homepage', 'About', 'Photo', 'Blog', 'Contact']
         let selection_context_filename = ['Homepage', 'About'],
             selection_context_pagename = ['index.html', 'about.html', 'photo.html', 'blog', 'contact'];
 
-        for (let i = 0; i < selection_context_filename.length; i++) {
-            let context_svg = d3.select('.selection_svg')
-                .append('g')
-                .attr('class', 'context_svg')
-                .attr('width', 250)
-                .attr('height', 80)
-                .style('transform', 'translate(25px,' + (120 + i * 65) + 'px)')
 
-            context_svg.append('svg:image')
-                .attr('xlink:href', "javascript/" + selection_context_filename[i] + ".svg")
-                .attr('class', 'selection_icon')
-
-            context_svg.append('text')
-                .attr('class', 'selection_text')
-                .text(selection_context_filename[i])
-                .style('transform', 'translate(45px, 29px)')
-                .on("click", function() {
-                    window.location.href = selection_context_pagename[i];
-                })
-
-        }
-
-        let date_svg = d3.select('.selection_svg')
-            .append('g')
-            .attr('class', 'date_svg')
-            .attr('width', 250)
-            .attr('height', 50)
-            .style('transform', 'translate(25px, 550px)')
-
-        date_svg.append('text')
-            .text(function() {
-                return new Date().toDateString()
-            });
-
-        // --------------- selection part --------------------------------------------------------------------
+        // --------------- content part title --------------------------------------------------------------------
 
         function getTextWidth(str, fontSize) {
             var width = 0;
@@ -96,24 +102,25 @@
             return [width, height];
         }
 
-        let titletext_width = getTextWidth('Me', 80)[0] + 50 + getTextWidth('About', 80)[0];
+        let titletext_width = getTextWidth('Me', 80)[0] + 50 + getTextWidth('About', 80)[0],
+            content_width = document.getElementById('about_content').clientWidth;
 
-        abouttitle_svg = d3.select('.about').append('g')
-            .attr('class', 'abouttitle_svg')
-            .style('transform', 'translate(0px, 10px)')
+        d3.select('#about_title_svg').attr('height', 150).attr('width', content_width)
 
-        abouttitle_svg.append('text')
+        d3.select('#about_title_svg').append('text')
             .text('About')
-            .style('transform', 'translate(' + ((document.body.clientWidth - 250) / 2 + 250 - titletext_width / 2) + "px, 70px)")
+            .attr('class', 'about_title_text')
+            .style('transform', 'translate(' + (content_width / 2 - titletext_width / 2) + "px, 120px)")
             .style('text-anchor', 'start');
 
-        abouttitle_svg.append('text')
+        d3.select('#about_title_svg').append('text')
             .text('Me')
-            .style('transform', 'translate(' + ((document.body.clientWidth - 250) / 2 + 250 + getTextWidth('About', 80)[0] - titletext_width / 2 + 50) + "px, 70px)")
+            .attr('class', 'about_title_text')
+            .style('transform', 'translate(' + (content_width / 2 - titletext_width / 2 + getTextWidth('About', 80)[0] + 50) + "px, 120px)")
             .style('fill', '#c4a857')
             .style('text-anchor', 'start');
 
-        let defs = abouttitle_svg.append('defs'),
+        let defs = d3.select('#about_title_svg').append('defs'),
             linearGradient = defs.append('linearGradient')
             .attr('id', 'linearGradient')
             .attr('x1', '0%')
@@ -124,56 +131,45 @@
             stop2 = linearGradient.append('stop').attr('offset', '100%').style('stop-color', '#c4a857');
 
 
-        abouttitle_svg.append('rect')
+        d3.select('#about_title_svg').append('rect')
             .attr('width', titletext_width * 2)
             .attr('height', 10)
-            .style('transform', 'translate(' + ((document.body.clientWidth - 250) / 2 + 250 - titletext_width) + "px, 85px)")
+            .style('transform', 'translate(' + (content_width / 2 - titletext_width) + "px, 140px)")
             .style('fill', "url(#" + linearGradient.attr("id") + ")");
+        // --------------- content part context --------------------------------------------------------------------
 
-        d3.select('#about_content')
-            .style('transform', 'translate(250px,0px)')
-        d3.select('.about_photo')
-            .attr('width', (document.body.clientWidth - 250) / 2 - 150 + 'px')
-        d3.select('#about_photo')
-            .attr('width', (document.body.clientWidth - 250) / 2 - 150 + 'px')
+        // let abouttext_quesdata = ['Name', 'Birth', 'Nationality', 'Degree', 'Major', 'Current Position', 'Dept', 'Email'],
+        //     abouttext_answdata = ['Min XU', '1995/04/30', 'China', 'Master', 'Big Data Technology', 'Research Assistant', 'CSE in HKUST', 'xuminxm430@gmail.com'];
 
-        let abouttext_quesdata = ['Name', 'Birth', 'Nationality', 'Degree', 'Major', 'Current Position', 'Dept', 'Email'],
-            abouttext_answdata = ['Min XU', '1995/04/30', 'China', 'Master', 'Big Data Technology', 'Research Assistant', 'CSE in HKUST', 'xuminxm430@gmail.com'];
+        // let aboutphoto_height = content_width * 0.41 * 1.22;
+        // let abouttext_svg = d3.select('.about_text')
+        //     .append('svg')
+        //     .attr('width', document.body.clientWidth / 2)
+        //     .attr('height', aboutphoto_height)
 
-        d3.select('.about_text').style('transform', 'translate(' + (document.body.clientWidth / 2 - 125) + "px,0px)")
+        // for (let i = 0; i < abouttext_quesdata.length; i++) {
+        //     abouttext_svg.append('g').append('text')
+        //         .attr('class', 'abouttext_ques')
+        //         .attr('id', 'aboutques_' + i)
+        //         .text(abouttext_quesdata[i] + ":")
+        //         .style('transform', 'translate(0px,' + aboutphoto_height / abouttext_quesdata.length * (i + 0.6) + "px)");
 
-        let aboutphoto_height = ((document.body.clientWidth - 250) / 2 - 150) * 582.66 / 437;
-        let abouttext_svg = d3.select('.about_text')
-            .append('svg')
-            .attr('width', document.body.clientWidth / 2)
-            .attr('height', aboutphoto_height)
+        //     abouttext_svg.append('path')
+        //         .style('transform', 'translate(0px,' + (aboutphoto_height / abouttext_quesdata.length * (i + 1) - 4) + "px)")
+        //         .attr('d', function() {
+        //             return "M0,0L" + String(document.body.clientWidth / 2 - 125) + ",0"
+        //         })
+        //         .style('stroke', 'grey')
+        //         .style('stroke-width', 4)
+        //         .style('opacity', 0.2)
 
-        for (let i = 0; i < abouttext_quesdata.length; i++) {
-            abouttext_svg.append('g').append('text')
-                .attr('class', 'abouttext_ques')
-                .attr('id', 'aboutques_' + i)
-                .text(abouttext_quesdata[i] + ":")
-                .style('transform', 'translate(0px,' + aboutphoto_height / abouttext_quesdata.length * (i + 0.6) + "px)");
-
-            abouttext_svg.append('path')
-                .style('transform', 'translate(0px,' + (aboutphoto_height / abouttext_quesdata.length * (i + 1) - 4) + "px)")
-                .attr('d', function() {
-                    return "M0,0L" + String(document.body.clientWidth / 2 - 125) + ",0"
-                })
-                .style('stroke', 'grey')
-                .style('stroke-width', 4)
-                .style('opacity', 0.2)
-
-            abouttext_svg.append('g').append('text')
-                .attr('class', 'abouttext_answ')
-                .text(abouttext_answdata[i])
-                .style('transform', 'translate(' + (getTextWidth(abouttext_quesdata[i] + ":", 32)[0] + 100) + "px, " + aboutphoto_height / abouttext_quesdata.length * (i + 0.6) + "px)");
-        }
+        //     abouttext_svg.append('g').append('text')
+        //         .attr('class', 'abouttext_answ')
+        //         .text(abouttext_answdata[i])
+        //         .style('transform', 'translate(' + (getTextWidth(abouttext_quesdata[i] + ":", 32)[0] + 40) + "px, " + aboutphoto_height / abouttext_quesdata.length * (i + 0.6) + "px)");
+        // }
 
         // --------------- photo and text part --------------------------------------------------------------------
-
-        d3.select('.about_exp')
-            .style('transform', 'translate(0px, ' + (((document.body.clientWidth - 250) / 2 - 150) * 582.66 / 437 + 40) + "px)")
 
         let workdata = {
                 'part_title': 'Work Exprience',
@@ -201,22 +197,15 @@
             };
 
         let aboutexp_partwidth = (document.body.clientWidth - 160) / 2 - 100,
-            // aboutwork_svgheight = 150 * (workdata['part_data'].length + 2),
             aboutexp_gap = 30,
             abouteduc_svgheight = 150 * (educdata['part_data'].length + 1),
             abouthonor_svgheight = 80 * (honordata['part_data'].length + 1),
             aboutwork_svgheight = abouteduc_svgheight + abouthonor_svgheight + aboutexp_gap;
 
         d3.select('.about_exp_work')
-            .style('transform', 'translate(80px, 0px)')
             .style('width', aboutexp_partwidth + 'px')
             .style('height', aboutwork_svgheight + 'px');
-        d3.select('.about_exp_educ')
-            .style('position', 'absolute')
-            .style('transform', 'translate(' + (aboutexp_partwidth + 80 + aboutexp_gap) + 'px,' + (-aboutwork_svgheight) + 'px)');
-        d3.select('.about_exp_award')
-            .style('position', 'absolute')
-            .style('transform', 'translate(' + (aboutexp_partwidth + 80 + aboutexp_gap) + 'px,' + (abouteduc_svgheight + aboutexp_gap - aboutwork_svgheight) + 'px)');
+
         let aboutworkexp_svg = d3.select('.about_exp_work')
             .append('svg')
             .attr('width', aboutexp_partwidth)
@@ -247,7 +236,7 @@
 
         function aboutexp_append(svg, data, partheight) {
             svg.append('text')
-                .attr('class', 'abouttext_ques')
+                .attr('class', 'Q_text')
                 .text(data['part_title'])
                 .style('transform', 'translate(' + (aboutexp_partwidth - getTextWidth(data['part_title'], 36)[0]) / 2 + "px, 40px)")
 
@@ -386,9 +375,6 @@
         document.getElementById('about_exp_id').style.height = aboutwork_svgheight + 'px';
 
         // --------------- exprience part --------------------------------------------------------------------
-        d3.select('.about_pub')
-            .style('transform', 'translate(80px,' + (abouthonor_svgheight + abouteduc_svgheight) * 3 / 4 + 'px)')
-
         let pubdata = {
             'part_title': 'Publications',
             'part_data': [
@@ -409,7 +395,7 @@
             .style('opacity', 0.5);
 
         aboutpub_svg.append('text')
-            .attr('class', 'abouttext_ques')
+            .attr('class', 'Q_text')
             .text(pubdata['part_title'])
             .style('transform', 'translate(' + ((aboutexp_partwidth * 2 + aboutexp_gap) / 2 - getTextWidth(pubdata['part_title'], 28)[0] / 2) + 'px, 40px)');
 

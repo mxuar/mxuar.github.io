@@ -3,208 +3,54 @@
 
 <head>
     <title>Min XU's Homepage</title>
-    <link rel="stylesheet" type="text/css" href="index.css" />
+    <script src="jquery.js"></script>
+    <link rel="stylesheet" type="text/css" href="bootstrap.css" />
     <script src="https://d3js.org/d3.v5.min.js"></script>
+    <script src="bootstrap.js"></script>
+    <link rel="stylesheet" type="text/css" href="index.css" />
+
 </head>
 
-<body>
 
-    <div id="cover" style="background-color: rgb(0, 0, 0, 0.4)">
-        <img src='javascript/Cover.jpeg' id='cover_Img' />
-        <svg class='cover_svg'></svg>
-    </div>
-    <div id='selection_window'>
-        <div id='selection_content'>
-            <svg class='selection_svg' width='250' height='1400' style='transform:translate(0, 200px)'></svg>
+<body onload="visitTime()">
+    <div style='display: flex; flex-direction: row;height: 800px'>
+        <div class="col-lg-2" style='display: flex;flex-direction: column;justify-content:center;align-items: center; background-color: rgb(51, 51, 51)'>
+            <p id='selection_title'>Min XU</p>
+            <div class='tab_selection'>
+                <img src='javascript/Homepage.svg' class='selection_icon' onclick="window.location.replace('index.html')" />
+                <p class='selection_text' onclick="window.location.replace('index.html')">Homepage</p>
+            </div>
+            <div class='tab_selection'>
+                <img src='javascript/About.svg' class='selection_icon' onclick="window.location.replace('about.html')" />
+                <p class='selection_text' onclick="window.location.replace('index.html')">About</p>
+            </div>
+            <div style='margin-top: 200px'>
+                <span id='clock'></span>
+            </div>
+        </div>
+
+
+        <div id="cover" class="col-lg-10" style='display: flex; flex-direction: column;align-items: center'>
+            <p id='cover_title'>Hello! My name is Min XU.</p>
+            <div style='background-color:rgba(255, 255, 255, 0.5);margin-top: 300px; width: 90%'>
+                <p class="cover_text">Glad to see you at here!</p>
+                <p class="cover_text">In brief, I'm working at HKUST (Hong Kong University of Science and Technology) as a research assistant in VisLab and my interests focus on data visualization, travel and volleyball.</p>
+                <p class="cover_text">If you want to know more about me, you could click the below buttons. :) Hope we will have common interests and if possible, we could share our views."</p>
+            </div>
+            <div style='display: flex;flex-direction: row;'>
+                <button class="covertext_button" onclick="window.location.replace('about.html')">
+                    <img src='javascript/About.svg' style='width:40px;height: 45px;margin-top: 5px'>
+                    <p class='covertext_button_text' style='margin-top:5px'>Know More</p>
+                </button>
+            </div>
         </div>
     </div>
 
-
     <script>
-        let title_svg = d3.select('.selection_svg')
-            .append('g')
-            .attr('class', 'title_svg')
-            .attr('width', 250)
-            .attr('height', 100)
-
-        title_svg.append('text')
-            .attr('id', 'selection_title')
-            .attr('x', 25)
-            .attr('y', 50)
-            .text('Min XU')
-
         // selection_context_filename = ['Homepage', 'About', 'Photo', 'Blog', 'Contact']
-        let selection_context_filename = ['Homepage', 'About'],
-            selection_context_pagename = ['index.html', 'about.html', 'photo.html', 'blog', 'contact'];
-
-        for (let i = 0; i < selection_context_filename.length; i++) {
-            let context_svg = d3.select('.selection_svg')
-                .append('g')
-                .attr('class', 'context_svg')
-                .attr('width', 250)
-                .attr('height', 80)
-                .style('transform', 'translate(25px,' + (120 + i * 65) + 'px)')
-
-            context_svg.append('svg:image')
-                .attr('xlink:href', "javascript/" + selection_context_filename[i] + ".svg")
-                .attr('class', 'selection_icon')
-
-            context_svg.append('text')
-                .attr('class', 'selection_text')
-                .text(selection_context_filename[i])
-                .style('transform', 'translate(45px, 29px)')
-                .on("click", function() {
-                    window.location.href = selection_context_pagename[i];
-                })
-
+        function visitTime() {
+            document.getElementById('clock').innerHTML = new Date().toDateString();
         }
-
-        let date_svg = d3.select('.selection_svg')
-            .append('g')
-            .attr('class', 'date_svg')
-            .attr('width', 250)
-            .attr('height', 50)
-            .style('transform', 'translate(25px, 550px)')
-
-        date_svg.append('text')
-            .text(function() {
-                return new Date().toDateString()
-            })
-
-        let covertitle_svg = d3.select('.cover_svg')
-            .append('g')
-            .attr('class', 'cover_title')
-            .style('transform', "translate(" + (document.body.clientWidth / 3) + "px, 75px)")
-
-        covertitle_svg.append('text')
-            .text("Hello! My name is Min XU.")
-
-        let covertext_svg = d3.select('.cover_svg')
-            .append('g')
-            .attr('class', 'cover_text')
-            .style("transform", "translate(" + (document.body.clientWidth * 2.5 / 4) + "px, 200px")
-
-        function getTextWidth(str) {
-            var width = 0;
-            var html = document.createElement('span');
-            html.innerText = str;
-            html.className = 'getTextWidth';
-            html.style.fontSize = '24px';
-            document.querySelector('body').appendChild(html);
-            width = document.querySelector('.getTextWidth').offsetWidth;
-            height = document.querySelector('.getTextWidth').offsetHeight;
-            document.querySelector('.getTextWidth').remove();
-            return [width, height];
-        }
-        let covertext_data = [
-                "Glad to see you at here!",
-                " ",
-                "In brief, I'm working at HKUST (Hong Kong University of Science and Technology) as a research assistant in VisLab and my interests focus on data visualization, travel and volleyball.",
-                " ",
-                "If you want to know more about me, you could click the below buttons. :) Hope we will have common interests and if possible, we could share our views."
-            ],
-            covertext_data_update = [];
-        for (let i = 0; i < covertext_data.length; i++) {
-            if (getTextWidth(covertext_data[i])[0] < (document.body.clientWidth * 1.48 / 4 - 15)) {
-                covertext_data_update.push(covertext_data[i])
-            } else {
-                let str = '';
-                for (let j = 0; j < covertext_data[i].split(' ').length; j++) {
-                    if (getTextWidth(str + covertext_data[i].split(' ')[j] + ' ')[0] > (document.body.clientWidth * 1.48 / 4 - 15)) {
-                        covertext_data_update.push(str);
-                        str = ''
-                        j = j - 1;
-                    } else if (j === covertext_data[i].split(' ').length - 1) {
-                        covertext_data_update.push(str + covertext_data[i].split(' ')[j]);
-                    } else {
-                        str = str + covertext_data[i].split(' ')[j] + ' '
-                    }
-                }
-            }
-        }
-        let covertext_rect = covertext_svg.append('rect')
-            .attr('class', 'covertext_rect')
-            .attr('width', document.body.clientWidth * 1.48 / 4)
-            .attr('height', getTextWidth(covertext_data[0])[1] * 1.1 * covertext_data_update.length)
-            .attr('fill', 'white')
-            .attr('opacity', 0.4)
-
-        covertext_svg.append('text')
-            .selectAll('tspan')
-            .data(covertext_data_update)
-            .enter()
-            .append('tspan')
-            .attr('x', 15)
-            .attr("dy", "1.2em")
-            .text(function(d) {
-                return d
-            })
-
-        let covertext_button_about = covertext_svg.append('rect')
-            .attr('class', 'covertext_button')
-            .attr('width', 200)
-            .attr('height', 60)
-            .attr('rx', 30)
-            .attr('ry', 30)
-            .style('transform', 'translate(' + document.body.clientWidth * 1.45 / 8 + "px, " + (getTextWidth(covertext_data[0])[1] * 1.1 * covertext_data_update.length + 15) + "px)")
-            .on('click', function() {
-                window.location.href = 'about.html'
-            }),
-            covertext_button_phote = covertext_svg.append('rect')
-            .attr('class', 'covertext_button')
-            .attr('width', 200)
-            .attr('height', 60)
-            .attr('rx', 30)
-            .attr('ry', 30)
-            // -------------------
-            .style('opacity', 0)
-            // -------------------
-            .style('transform', 'translate(' + document.body.clientWidth * 1.45 / 8 + "px, " + (getTextWidth(covertext_data[0])[1] * 1.1 * covertext_data_update.length + 15 + 95) + "px)")
-            .on('click', function() {
-                window.location.href = 'photo.html'
-            });
-
-        let coverbutton_fontsize = 30;
-        covertext_svg.append('g').append('text')
-            .text("Know More")
-            .style('font-size', coverbutton_fontsize)
-            .style('fill', 'white')
-            .style('stroke', 'white')
-            .style('transform', 'translate(' + (document.body.clientWidth * 1.45 / 8 + 50) + "px, " + (getTextWidth(covertext_data[0])[1] * 1.1 * covertext_data_update.length + 15 + 40) + "px)")
-            .on('click', function() {
-                window.location.href = 'about.html'
-            });
-        covertext_svg.append('g').append('svg:image')
-            .attr('xlink:href', "javascript/About.svg")
-            .style('transform', 'translate(' + (document.body.clientWidth * 1.45 / 8 + 10) + "px, " + (getTextWidth(covertext_data[0])[1] * 1.1 * covertext_data_update.length + 15 + 10) + "px)")
-            .on('click', function() {
-                window.location.href = 'about.html'
-            })
-            .attr('width', 40)
-            .attr('height', 45);
-        covertext_svg.append('g').append('text')
-            .text("Photo")
-            .style('font-size', coverbutton_fontsize)
-            .style('fill', 'white')
-            .style('stroke', 'white')
-            // -------------------
-            .style('opacity', 0)
-            // -------------------
-            .style('transform', 'translate(' + (document.body.clientWidth * 1.45 / 8 + 80) + "px, " + (getTextWidth(covertext_data[0])[1] * 1.1 * covertext_data_update.length + 15 + 95 + 40) + "px)")
-            .on('click', function() {
-                window.location.href = 'photo.html'
-            });
-        covertext_svg.append('g').append('svg:image')
-            .attr('xlink:href', "javascript/Photo.svg")
-            // -------------------
-            .style('opacity', 0)
-            // -------------------
-            .style('transform', 'translate(' + (document.body.clientWidth * 1.45 / 8 + 40) + "px, " + (getTextWidth(covertext_data[0])[1] * 1.1 * covertext_data_update.length + 15 + 95 + 10) + "px)")
-            .on('click', function() {
-                window.location.href = 'photo.html'
-            })
-            .attr('width', 40)
-            .attr('height', 45);
     </script>
 </body>
 
