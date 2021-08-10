@@ -40,9 +40,9 @@
                         <div class='border_style' style='margin-top:0px'>
                             <p><span class='Q_text'>Name:</span> <span class='A_text' style='margin-left: 100px'>Min XU</span></p>
                         </div>
-                        <div class='border_style'>
+                        <!-- <div class='border_style'>
                             <p><span class='Q_text'>Birth:</span> <span class='A_text' style='margin-left: 100px'>04.30</span></p>
-                        </div>
+                        </div> -->
                         <div class='border_style'>
                             <p><span class='Q_text'>Nationality:</span> <span class='A_text' style='margin-left: 100px'>China</span></p>
                         </div>
@@ -137,6 +137,8 @@
             .style('transform', 'translate(' + (content_width / 2 - titletext_width) + "px, 140px)")
             .style('fill', "url(#" + linearGradient.attr("id") + ")");
         // --------------- content part context --------------------------------------------------------------------
+        let aboutexp_partwidth = (document.body.clientWidth - 160) / 2 - 100,
+            aboutexp_gap = 30;
 
         // let abouttext_quesdata = ['Name', 'Birth', 'Nationality', 'Degree', 'Major', 'Current Position', 'Dept', 'Email'],
         //     abouttext_answdata = ['Min XU', '1995/04/30', 'China', 'Master', 'Big Data Technology', 'Research Assistant', 'CSE in HKUST', 'xuminxm430@gmail.com'];
@@ -171,208 +173,206 @@
 
         // --------------- photo and text part --------------------------------------------------------------------
 
-        let workdata = {
-                'part_title': 'Work Exprience',
-                'part_data': [
-                    ['Hong Kong University of Science and Technology', '2018.09-2020.07', 'Hong Kong', 'Postion: Research Assistant', 'Data Analytics and Visualization in E-Learning Project, Help Paper Submission (IEEE VIS and EuroVis)'],
-                    ['Tencent Cloud', '2018.06-2018.08', 'Shen Zhen', 'Postion: Product Manager(Intern)', 'Update the Document of Cloud Object Storage, Improve the Function of Cloud Object Storage'],
-                    ['Intetix Technology(Beijing) Co.,Ltd.', '2015.12-2016.09', 'Guang Zhou', 'Postion: Compilation Group(Intern)', 'Translate the Foreign Documents about Big Data, Improve Typesetting and Promote the Documents']
-                ]
-            },
-            educdata = {
-                'part_title': 'Education Exprience',
-                'part_data': [
-                    ['Hong Kong University of Science and Technology', '2017.09-2018.07', 'Hong Kong', 'Major: Big Data Technology', 'Master of Science'],
-                    ['South China University of Technology', '2013.09-2017.07', 'Guang Zhou', 'Major: Electronic Engineering', 'Bachelor of Science']
-                ]
-            },
-            honordata = {
-                'part_title': 'Awards',
-                'part_data': [
-                    ['BOCHK Hackathon 2019 Young Talent Award', '2019.12', 'BOCHK', '', ''],
-                    ['IEEE VIS 2019 Best Poster Award', '2019.08', 'IEEE VIS 19', '', ''],
-                    ['Entrance Scholarship for MSc in BDT program', '2017.11', 'HKUST', '', ''],
-                    ['Third-class scholarship', '2013.07-2015.07', 'SCUT', '', '']
-                ]
-            };
+        // let workdata = {
+        //         'part_title': 'Work Exprience',
+        //         'part_data': [
+        //             ['Hong Kong University of Science and Technology', '2018.09-2020.07', 'Hong Kong', 'Postion: Research Assistant', 'Data Analytics and Visualization in E-Learning Project, Help Paper Submission (IEEE VIS and EuroVis)'],
+        //             ['Tencent Cloud', '2018.06-2018.08', 'Shen Zhen', 'Postion: Product Manager(Intern)', 'Update the Document of Cloud Object Storage, Improve the Function of Cloud Object Storage'],
+        //             // ['Intetix Technology(Beijing) Co.,Ltd.', '2015.12-2016.09', 'Guang Zhou', 'Postion: Compilation Group(Intern)', 'Translate the Foreign Documents about Big Data, Improve Typesetting and Promote the Documents']
+        //         ]
+        //     },
+        //     educdata = {
+        //         'part_title': 'Education Exprience',
+        //         'part_data': [
+        //             ['Hong Kong University of Science and Technology', '2017.09-2018.07', 'Hong Kong', 'Major: Big Data Technology', 'Master of Science'],
+        //             ['South China University of Technology', '2013.09-2017.07', 'Guang Zhou', 'Major: Electronic Engineering', 'Bachelor of Science']
+        //         ]
+        //     },
+        //     honordata = {
+        //         'part_title': 'Awards',
+        //         'part_data': [
+        //             ['BOCHK Hackathon 2019 Young Talent Award', '2019.12', 'BOCHK', '', ''],
+        //             ['IEEE VIS 2019 Best Poster Award', '2019.08', 'IEEE VIS 19', '', ''],
+        //             ['Entrance Scholarship for MSc in BDT program', '2017.11', 'HKUST', '', ''],
+        //             ['Third-class scholarship', '2013.07-2015.07', 'SCUT', '', '']
+        //         ]
+        //     };
 
-        let aboutexp_partwidth = (document.body.clientWidth - 160) / 2 - 100,
-            aboutexp_gap = 30,
-            abouteduc_svgheight = 150 * (educdata['part_data'].length + 1),
-            abouthonor_svgheight = 80 * (honordata['part_data'].length + 1),
-            aboutwork_svgheight = abouteduc_svgheight + abouthonor_svgheight + aboutexp_gap;
+        // let abouteduc_svgheight = 150 * (educdata['part_data'].length + 1),
+        //     abouthonor_svgheight = 80 * (honordata['part_data'].length + 1),
+        //     aboutwork_svgheight = abouteduc_svgheight + abouthonor_svgheight + aboutexp_gap;
 
-        d3.select('.about_exp_work')
-            .style('width', aboutexp_partwidth + 'px')
-            .style('height', aboutwork_svgheight + 'px');
+        // d3.select('.about_exp_work')
+        //     .style('width', aboutexp_partwidth + 'px')
+        //     .style('height', aboutwork_svgheight + 'px');
 
-        let aboutworkexp_svg = d3.select('.about_exp_work')
-            .append('svg')
-            .attr('width', aboutexp_partwidth)
-            .attr('height', aboutwork_svgheight);
-        let abouteducexp_svg = d3.select('.about_exp_educ')
-            .append('svg')
-            .attr('width', aboutexp_partwidth)
-            .attr('height', abouteduc_svgheight);
-        let abouthonorexp_svg = d3.select('.about_exp_award')
-            .append('svg')
-            .attr('width', aboutexp_partwidth)
-            .attr('height', abouthonor_svgheight);
-        aboutworkexp_svg.append('rect')
-            .attr('width', aboutexp_partwidth)
-            .attr('height', aboutwork_svgheight)
-            .style('fill', '#f1d6ab')
-            .style('opacity', 0.5);
-        abouteducexp_svg.append('rect')
-            .attr('width', aboutexp_partwidth)
-            .attr('height', abouteduc_svgheight)
-            .style('fill', '#c2e8ce')
-            .style('opacity', 0.5);
-        abouthonorexp_svg.append('rect')
-            .attr('width', aboutexp_partwidth)
-            .attr('height', abouthonor_svgheight)
-            .style('fill', '#f6ad7b')
-            .style('opacity', 0.5);
+        // let aboutworkexp_svg = d3.select('.about_exp_work')
+        //     .append('svg')
+        //     .attr('width', aboutexp_partwidth)
+        //     .attr('height', aboutwork_svgheight);
+        // let abouteducexp_svg = d3.select('.about_exp_educ')
+        //     .append('svg')
+        //     .attr('width', aboutexp_partwidth)
+        //     .attr('height', abouteduc_svgheight);
+        // let abouthonorexp_svg = d3.select('.about_exp_award')
+        //     .append('svg')
+        //     .attr('width', aboutexp_partwidth)
+        //     .attr('height', abouthonor_svgheight);
+        // aboutworkexp_svg.append('rect')
+        //     .attr('width', aboutexp_partwidth)
+        //     .attr('height', aboutwork_svgheight)
+        //     .style('fill', '#f1d6ab')
+        //     .style('opacity', 0.5);
+        // abouteducexp_svg.append('rect')
+        //     .attr('width', aboutexp_partwidth)
+        //     .attr('height', abouteduc_svgheight)
+        //     .style('fill', '#c2e8ce')
+        //     .style('opacity', 0.5);
+        // abouthonorexp_svg.append('rect')
+        //     .attr('width', aboutexp_partwidth)
+        //     .attr('height', abouthonor_svgheight)
+        //     .style('fill', '#f6ad7b')
+        //     .style('opacity', 0.5);
 
-        function aboutexp_append(svg, data, partheight) {
-            svg.append('text')
-                .attr('class', 'Q_text')
-                .text(data['part_title'])
-                .style('transform', 'translate(' + (aboutexp_partwidth - getTextWidth(data['part_title'], 36)[0]) / 2 + "px, 40px)")
+        // function aboutexp_append(svg, data, partheight) {
+        //     svg.append('text')
+        //         .attr('class', 'Q_text')
+        //         .text(data['part_title'])
+        //         .style('transform', 'translate(' + (aboutexp_partwidth - getTextWidth(data['part_title'], 36)[0]) / 2 + "px, 40px)")
 
-            svg.append('path')
-                .attr('d', function() {
-                    return 'M0, 0L' + String(aboutexp_partwidth) + ", 0"
-                })
-                .style('transform', 'translate(0, 50px)')
-                .style('stroke', 'grey')
-                .style('opacity', 0.2)
-                .style('stroke-width', 3);
+        //     svg.append('path')
+        //         .attr('d', function() {
+        //             return 'M0, 0L' + String(aboutexp_partwidth) + ", 0"
+        //         })
+        //         .style('transform', 'translate(0, 50px)')
+        //         .style('stroke', 'grey')
+        //         .style('opacity', 0.2)
+        //         .style('stroke-width', 3);
 
-            let part_svg = svg.append('g').style('transform', 'translate(0px, 53px)')
+        //     let part_svg = svg.append('g').style('transform', 'translate(0px, 53px)')
 
-            let singlepart_height = (partheight - 60) / data['part_data'].length,
-                logwidth = 30;
+        //     let singlepart_height = (partheight - 60) / data['part_data'].length,
+        //         logwidth = 30;
 
-            for (let itemnum = 0; itemnum < data['part_data'].length; itemnum++) {
-                part_svg.append('text')
-                    .text(data['part_data'][itemnum][0])
-                    .style('font-size', function() {
-                        let suitablesize = 30
-                        for (let i = 0; i < 11; i++) {
-                            if (getTextWidth(data['part_data'][0][0], 30 - i)[0] <= aboutexp_partwidth - 50) {
-                                suitablesize = 26 - i;
-                                break;
-                            }
-                            if (i == 10) {
-                                suitablesize = 16;
-                            }
-                        }
-                        return suitablesize
-                    })
-                    .style('font-weight', 'bold')
-                    .style('transform', 'translate(10px,' + (30 + singlepart_height * itemnum) + 'px)')
-                    .style('fill', '#555555')
-                    .style('font-family', "'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif");
+        //     for (let itemnum = 0; itemnum < data['part_data'].length; itemnum++) {
+        //         part_svg.append('text')
+        //             .text(data['part_data'][itemnum][0])
+        //             .style('font-size', function() {
+        //                 let suitablesize = 30
+        //                 for (let i = 0; i < 11; i++) {
+        //                     if (getTextWidth(data['part_data'][0][0], 30 - i)[0] <= aboutexp_partwidth - 50) {
+        //                         suitablesize = 26 - i;
+        //                         break;
+        //                     }
+        //                     if (i == 10) {
+        //                         suitablesize = 16;
+        //                     }
+        //                 }
+        //                 return suitablesize
+        //             })
+        //             .style('font-weight', 'bold')
+        //             .style('transform', 'translate(10px,' + (30 + singlepart_height * itemnum) + 'px)')
+        //             .style('fill', '#555555')
+        //             .style('font-family', "'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif");
 
-                part_svg.append('svg:image')
-                    .attr('xlink:href', 'javascript/calendar.svg')
-                    .attr('width', logwidth)
-                    .attr('height', logwidth)
-                    .style('transform', 'translate(10px,' + (40 + singlepart_height * itemnum) + 'px)');
+        //         part_svg.append('svg:image')
+        //             .attr('xlink:href', 'javascript/calendar.svg')
+        //             .attr('width', logwidth)
+        //             .attr('height', logwidth)
+        //             .style('transform', 'translate(10px,' + (40 + singlepart_height * itemnum) + 'px)');
 
-                part_svg.append('text')
-                    .attr('class', 'aboutexp_describe')
-                    .style('font-size', function() {
-                        let suitablesize = 20
-                        for (let i = 0; i < 11; i++) {
-                            if (getTextWidth(data['part_data'][itemnum][1], 20 - i)[0] <= aboutexp_partwidth / 2 - 55) {
-                                suitablesize = 20 - i;
-                                break;
-                            }
-                            if (i == 10) {
-                                suitablesize = 12;
-                            }
-                        }
-                        return suitablesize
-                    })
-                    .text(data['part_data'][itemnum][1])
-                    .style('transform', 'translate(50px,' + (65 + singlepart_height * itemnum) + 'px)');
+        //         part_svg.append('text')
+        //             .attr('class', 'aboutexp_describe')
+        //             .style('font-size', function() {
+        //                 let suitablesize = 20
+        //                 for (let i = 0; i < 11; i++) {
+        //                     if (getTextWidth(data['part_data'][itemnum][1], 20 - i)[0] <= aboutexp_partwidth / 2 - 55) {
+        //                         suitablesize = 20 - i;
+        //                         break;
+        //                     }
+        //                     if (i == 10) {
+        //                         suitablesize = 12;
+        //                     }
+        //                 }
+        //                 return suitablesize
+        //             })
+        //             .text(data['part_data'][itemnum][1])
+        //             .style('transform', 'translate(50px,' + (65 + singlepart_height * itemnum) + 'px)');
 
-                part_svg.append('svg:image')
-                    .attr('xlink:href', 'javascript/pin.svg')
-                    .attr('width', logwidth)
-                    .attr('height', logwidth)
-                    .style('transform', 'translate(' + aboutexp_partwidth / 2 + "px," + (40 + singlepart_height * itemnum) + "px)");
+        //         part_svg.append('svg:image')
+        //             .attr('xlink:href', 'javascript/pin.svg')
+        //             .attr('width', logwidth)
+        //             .attr('height', logwidth)
+        //             .style('transform', 'translate(' + aboutexp_partwidth / 2 + "px," + (40 + singlepart_height * itemnum) + "px)");
 
-                part_svg.append('text')
-                    .attr('class', 'aboutexp_describe')
-                    .style('font-size', function() {
-                        let suitablesize = 20
-                        for (let i = 0; i < 11; i++) {
-                            if (getTextWidth(data['part_data'][itemnum][2], 20 - i)[0] <= aboutexp_partwidth / 2 - 55) {
-                                suitablesize = 20 - i;
-                                break;
-                            }
-                            if (i == 10) {
-                                suitablesize = 12;
-                            }
-                        }
-                        return suitablesize
-                    })
-                    .text(data['part_data'][itemnum][2])
-                    .style('transform', 'translate(' + (aboutexp_partwidth / 2 + 40) + 'px,' + (65 + singlepart_height * itemnum) + 'px)');
+        //         part_svg.append('text')
+        //             .attr('class', 'aboutexp_describe')
+        //             .style('font-size', function() {
+        //                 let suitablesize = 20
+        //                 for (let i = 0; i < 11; i++) {
+        //                     if (getTextWidth(data['part_data'][itemnum][2], 20 - i)[0] <= aboutexp_partwidth / 2 - 55) {
+        //                         suitablesize = 20 - i;
+        //                         break;
+        //                     }
+        //                     if (i == 10) {
+        //                         suitablesize = 12;
+        //                     }
+        //                 }
+        //                 return suitablesize
+        //             })
+        //             .text(data['part_data'][itemnum][2])
+        //             .style('transform', 'translate(' + (aboutexp_partwidth / 2 + 40) + 'px,' + (65 + singlepart_height * itemnum) + 'px)');
 
-                part_svg.append('text')
-                    .attr('class', 'aboutexp_describe')
-                    .style('font-size', function() {
-                        let suitablesize = 25
-                        for (let i = 0; i < 11; i++) {
-                            if (getTextWidth(data['part_data'][itemnum][3], 25 - i)[0] <= aboutexp_partwidth - 50) {
-                                suitablesize = 25 - i;
-                                break;
-                            }
-                            if (i == 10) {
-                                suitablesize = 15;
-                            }
-                        }
-                        return suitablesize
-                    })
-                    .text(data['part_data'][itemnum][3])
-                    .style('transform', 'translate(10px,' + (100 + singlepart_height * itemnum) + 'px)');
+        //         part_svg.append('text')
+        //             .attr('class', 'aboutexp_describe')
+        //             .style('font-size', function() {
+        //                 let suitablesize = 25
+        //                 for (let i = 0; i < 11; i++) {
+        //                     if (getTextWidth(data['part_data'][itemnum][3], 25 - i)[0] <= aboutexp_partwidth - 50) {
+        //                         suitablesize = 25 - i;
+        //                         break;
+        //                     }
+        //                     if (i == 10) {
+        //                         suitablesize = 15;
+        //                     }
+        //                 }
+        //                 return suitablesize
+        //             })
+        //             .text(data['part_data'][itemnum][3])
+        //             .style('transform', 'translate(10px,' + (100 + singlepart_height * itemnum) + 'px)');
 
-                for (let j = 0; j < data['part_data'][itemnum][4].split(',').length; j++) {
-                    part_svg.append('text')
-                        .attr('class', 'aboutexp_describe')
-                        .style('font-size', function() {
-                            let suitablesize = 25
-                            for (let i = 0; i < 11; i++) {
-                                if (getTextWidth(data['part_data'][itemnum][4].split(',')[j], 27 - i)[0] <= aboutexp_partwidth - 50) {
-                                    suitablesize = 25 - i;
-                                    break;
-                                }
-                                if (i == 10) {
-                                    suitablesize = 15;
-                                }
-                            }
-                            if (data['part_title'] == 'Work Exprience') {
-                                return suitablesize
-                            }
-                            return suitablesize
-                        })
-                        .text(data['part_data'][itemnum][4].split(',')[j])
-                        .style('transform', 'translate(10px,' + (100 + 35 * (j + 1) + itemnum * singlepart_height) + 'px)');
+        //         for (let j = 0; j < data['part_data'][itemnum][4].split(',').length; j++) {
+        //             part_svg.append('text')
+        //                 .attr('class', 'aboutexp_describe')
+        //                 .style('font-size', function() {
+        //                     let suitablesize = 25
+        //                     for (let i = 0; i < 11; i++) {
+        //                         if (getTextWidth(data['part_data'][itemnum][4].split(',')[j], 27 - i)[0] <= aboutexp_partwidth - 50) {
+        //                             suitablesize = 25 - i;
+        //                             break;
+        //                         }
+        //                         if (i == 10) {
+        //                             suitablesize = 15;
+        //                         }
+        //                     }
+        //                     if (data['part_title'] == 'Work Exprience') {
+        //                         return suitablesize
+        //                     }
+        //                     return suitablesize
+        //                 })
+        //                 .text(data['part_data'][itemnum][4].split(',')[j])
+        //                 .style('transform', 'translate(10px,' + (100 + 35 * (j + 1) + itemnum * singlepart_height) + 'px)');
 
-                }
-            }
+        //         }
+        //     }
 
-        }
+        // }
 
-        aboutexp_append(aboutworkexp_svg, workdata, aboutwork_svgheight);
-        aboutexp_append(abouteducexp_svg, educdata, abouteduc_svgheight);
-        aboutexp_append(abouthonorexp_svg, honordata, abouthonor_svgheight);
+        // aboutexp_append(aboutworkexp_svg, workdata, aboutwork_svgheight);
+        // aboutexp_append(abouteducexp_svg, educdata, abouteduc_svgheight);
+        // aboutexp_append(abouthonorexp_svg, honordata, abouthonor_svgheight);
 
-        document.getElementById('about_exp_id').style.height = aboutwork_svgheight + 'px';
+        // document.getElementById('about_exp_id').style.height = aboutwork_svgheight + 'px';
 
         // --------------- exprience part --------------------------------------------------------------------
         let pubdata = {
